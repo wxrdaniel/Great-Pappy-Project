@@ -17,8 +17,9 @@ for i in range(0,1200):
     var_num = str(random.randint(1,1001))
 
     rand_var = ''.join([random.choice([var_str, var_num])])
+    rand_pick_domain = ''.join([random.choice(domain)])
 
-    result = pick_name + rand_var + domain[0]
+    result = pick_name + rand_var + rand_pick_domain
     print result
 #    time.sleep(1)
     i+=1
