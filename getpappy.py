@@ -61,6 +61,7 @@ from html.parser import HTMLParser
 name_db  = [('Test', 'Name'),
             ('Yasukuni', 'Masuda'),
             ('Isaac', 'Yi'),
+            ('Isacc', 'Yi'),
             ('Edd', 'Siu'),
             ('Eduardo', 'Siu'),
             ('Trevor', 'Warner'),
@@ -270,7 +271,6 @@ def dump_it_in():
         break
 
 
-welcome_help()
-#dump_it_in()
+dump_it_in()
 #set_name(name_db)
 #output_log("Daniel Pan", "asdfdfa@adf.com")
