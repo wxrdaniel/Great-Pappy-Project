@@ -1,10 +1,10 @@
-<!--
-@Date:   Jun-30-2017
-@Project: Great Pappy Project 
-@Filename: README.md
-@Last modified time: Jul-05-2017
--->
-<!--
+# Great Pappy Project
+```
+Date:   Jun-30-2017
+Project: Great Pappy Project
+Filename: README.md
+Last modified time: Jul-05-2017
+
                      `-:+poweredo+:-`
                 `:whmmhyo+/::::/+oyhNmhe:`
              `+rNh+-               +Nh:ohNe+`
@@ -46,8 +46,9 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-# Great Pappy Project --> -->
+along with this program.  If not, see "http://www.gnu.org/licenses/".
+```
+
 *Description:*
 
 *Everything that is needed in order to get a chance to purchase Pappy Van Winkle*

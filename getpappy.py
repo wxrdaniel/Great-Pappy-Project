@@ -71,9 +71,9 @@ name_log = "name.log"
 email_log = "mail.log"
 
 # Set Target
-target_url = "http://www.abcfws.com/content.jsp?pageName=BourbonLottery"
 target_post = "http://www.abcfws.com/catalog/oos_email.cmd"
 
+# POST Data Dictionary
 post_data   = {'productName': 'bourbon',
                 'fname': '',
                 'lname': '',
@@ -87,8 +87,6 @@ post_data   = {'productName': 'bourbon',
 def welcome_help():
     os.system("clear")
     print("""
-
-
           * ***
         *  ****  *                                 *
        *  *  ****                                 **
@@ -141,7 +139,9 @@ def welcome_help():
      ***    *                                     *
       ******                                     *
         ***                                     *
-
+""")
+    time.sleep(2.35)
+    print("""
                     [ Version: 1.0 beta ]
 
     ========================================================
@@ -158,8 +158,10 @@ def welcome_help():
     """)
 
 
-# Pick Register Name.
+# User Pick Name Function
+# User pick name from the name list in general settings.
 def set_name(input_name_list):
+    # Set variables
     name_pool = input_name_list
     name_pool_size = len(name_pool)
 
@@ -184,10 +186,12 @@ def set_name(input_name_list):
                 print("Are you an idiot!?")
                 continue
 
+    # Return Chosen Name.
     picked_name = name_pool[user_input]
     # uncomment for debug
 #    print(picked_name)
     return picked_name
+
 
 # Get all email from email list
 def email_sample(input_email_list):
@@ -199,6 +203,8 @@ def email_sample(input_email_list):
     ef.close()
 
 
+# List out current folder file to find email list.
+# Cross-platform supported: OSX/*nix/Windows
 def list_current_dir():
     os_run = os.name
     if os_run == "nt":
@@ -207,6 +213,7 @@ def list_current_dir():
         os.system("ls")
 
 
+# Main fucntion
 def dump_it_in():
     # Print welcome message
     welcome_help()
@@ -218,7 +225,9 @@ def dump_it_in():
     email_sample_list  = input("Email List Filename: ")
     email_list       = email_sample(email_sample_list)
     email_size = len(email_list)
-    timestamp = time.ctime() + "\n"
+
+    # Add timestamp to the log file
+    timestamp = "\n" + time.ctime() + "\n"
     log = open("response.log", "a+")
     log.write(timestamp)
     log.close()
@@ -236,6 +245,7 @@ def dump_it_in():
             # Remove for debug
             #print(email)
 
+            # Hijack Stdout for logfile
             response_log = open("response.log", "a+")
             response_output = sys.stdout
             sys.stdout = response_log
@@ -247,6 +257,7 @@ def dump_it_in():
             r = requests.post(target_post, post_data)
             print("............ %d %s" % (r.status_code, r.reason))
 
+            # End stdout hijack
             sys.stdout = response_output
             response_log.close()
 
@@ -254,30 +265,12 @@ def dump_it_in():
 
             count += 1
 
+            # Delay Factor
             time.sleep(0.45)
         break
 
 
-
-class BruteParser(HTMLParser):
-    def __init__(self):
-        HTMLParser.__init__(self)
-        self.tag_results = {}
-
-    def handle_starttag(self, tag, attrs):
-        if tag == "input":
-            tag_name = None
-            tag_value = None
-            for name, value in attrs:
-                if name == "name":
-                    tag_name = value
-                if name == "value":
-                    tag_value = value
-
-            if tag_name is not None:
-                self.tag_results[tag_name] = value
-
-
-dump_it_in()
+welcome_help()
+#dump_it_in()
 #set_name(name_db)
 #output_log("Daniel Pan", "asdfdfa@adf.com")
