@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # @Date:   Jul-05-2017
 # @Project: Great Pappy Project
 # @Filename: getpappy.py
@@ -48,7 +49,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#!/usr/env python
 
 import requests
 import sys
@@ -142,7 +142,7 @@ def welcome_help():
       ******                                     *
         ***                                     *
 
-                    [ Version: 0.1 beta ]
+                    [ Version: 1.0 beta ]
 
     ========================================================
 
@@ -218,6 +218,11 @@ def dump_it_in():
     email_sample_list  = input("Email List Filename: ")
     email_list       = email_sample(email_sample_list)
     email_size = len(email_list)
+    timestamp = time.ctime() + "\n"
+    log = open("response.log", "a+")
+    log.write(timestamp)
+    log.close()
+
     while True:
         print("Start Submitting...\n...\n...\n...")
         for count in range(email_size):
@@ -226,6 +231,7 @@ def dump_it_in():
             post_data['fname'] = fname
             post_data['lname'] = lname
             post_data['email'] = email
+            print("Submitting:\n%s %s : %s (%d left)" % (fname, lname, email, left_count))
 
             # Remove for debug
             #print(email)
@@ -234,16 +240,21 @@ def dump_it_in():
             response_output = sys.stdout
             sys.stdout = response_log
 
-            print("Submitting: %s %s : %s (%d left)" % (fname, lname, email, left_count))
+            # Log Current Entry
+            print("%s %s : %s" % (fname, lname, email))
 
             # POST Request
             r = requests.post(target_post, post_data)
             print("............ %d %s" % (r.status_code, r.reason))
 
+            sys.stdout = response_output
             response_log.close()
+
+            print("............ %d %s" % (r.status_code, r.reason))
+
             count += 1
 
-            time.sleep(0.65)
+            time.sleep(0.45)
         break
 
 
