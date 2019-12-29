@@ -58,14 +58,7 @@ import os
 from html.parser import HTMLParser
 
 # General Settings
-name_db  = [('Test', 'Name'),
-            ('Yasukuni', 'Masuda'),
-            ('Isaac', 'Yi'),
-            ('Edd', 'Siu'),
-            ('Eduardo', 'Siu'),
-            ('Trevor', 'Warner'),
-            ('Yashin', 'Pan'),
-            ('Daniel', 'Pan')]
+name_db  = [('Test', 'Name')]
 log_file = "log"
 name_log = "name.log"
 email_log = "mail.log"
